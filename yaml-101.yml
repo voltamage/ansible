@@ -1,0 +1,40 @@
+# YAML stands for YAML Ain't Markup Language
+person: # Information can be stored inside an object, defined by indentation. To access the occupation value, you would use person.occupation
+  name: &name "volt" # Defining string in quotations, the &name is an anchor for stuff below, anchor doesn't have to match key
+  occupation: 'hobbyist' # Can also define string with single quotes
+  age: !!float 26 # Defining integer number, except for the addition of the !!float, which forces it to render as a floating point number 26.0
+  gpa: !!str 3.0 # Defining floating point number, except for the addition of the !!str, which forces it to render as a string, literal value of "3.0"
+  fav_num: 1e+10 # Defining a complex number, in this case an exponential
+  male: true # Defining a boolean
+  birthday: 1994-02-06 14:33:22 # ISO 8601 is the date formatting used by YAML
+  flaws: null # Define null value
+  hobbies: # Defining a list, the hyphen indicates each object is part of the list
+    - games
+    - linux
+    - environment art
+  movies: ["Inception", "The Revenant", "The Grand Budapest Hotel"] # Lists on a single line can be defined inside of the square brackets, equivalent to list above
+  friends: # Can also have objects inside a list
+    - name: "Steph"
+      age: 22
+    - {name: "Steve", age: 25} # Object can also be definied inside of curly brackets, similar to the way square brackets work for the list above
+    - # Hitting enter after the hyphen increases readability but does not change the way that the information is represented
+      name: "Joe"
+      age: 23
+  description: > # The greater than sign tells yaml to render the text in a single line, but we can keep readability in the code with this method
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    Excepteur sint occaecat cupidatat non proident,
+    sunt in culpa qui officia deserunt mollit anim id est laborum."
+  signature: | # This does the same as above, helping yaml handle large amounts of information, except this time it keeps the formatting
+    Ethan
+    Ansible School
+    email - ethan@ansibleschool.com
+  id: *name # References the anchor of the same name, therefore having a value of "volt"
+  base: &base # Reference for foo below
+    var1: value1
+  foo:
+    <<: *base # References the entire object above, therefore having a value of var1: value1
+    var2: value2
