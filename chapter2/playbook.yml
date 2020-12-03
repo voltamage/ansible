@@ -1,0 +1,10 @@
+---
+- hosts: debian
+  become: yes
+  tasks:
+    - name: Ensure NTP is installed.
+      package: name=ntp state=present
+    - name: restart ntpd
+      service: name=ntpd state=restarted
+    - name: Ensure NTP is running.
+      service: name=ntpd state=started enabled=yes
