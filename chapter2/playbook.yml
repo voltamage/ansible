@@ -4,4 +4,4 @@
   become: yes
   tasks:
     - name: Ensure ranger is installed
-      package: name=ranger state=present
+      apt: name=ranger state=present
