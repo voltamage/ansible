@@ -1,0 +1,8 @@
+---
+- name: Check free space
+  hosts: all
+  become: yes
+  tasks:
+    - name: Free space query
+      ansible.builtin.shell:
+        cmd: free -h
