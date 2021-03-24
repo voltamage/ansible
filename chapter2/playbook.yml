@@ -1,8 +1,7 @@
 ---
-- name: Check free space
+- name: Simple ranger install
   hosts: all
   become: yes
   tasks:
-    - name: Free space query
-      ansible.builtin.shell:
-        cmd: free -h
+    - name: Ensure ranger is installed
+      package: name=ranger state=present
